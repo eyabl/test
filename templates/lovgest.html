@@ -1,0 +1,42 @@
+{% extends 'template.html' %}
+{% block content %}
+
+            <!-- Gestion Lovgest Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                        <form method="post" action="{% url 'load' %}">
+                            {% csrf_token %}
+                    <div class="d-flex row" style="text-align: left">
+                        <h6 class="mb-0 col-sm-7">Gestion des sociétés et gestionnaires</h6>
+                        <a href="/lovgest/ajouter" class="col-sm-2" style="text-align: right">
+                        <input type="submit" value="Ajouter" class="btn btn-sm btn-primary" style="width: 150px;"></a>
+                        <a class="col-sm-3" style="text-align: right">
+                        <input type="submit" value="Importer depuis le fichier excel" class="btn btn-sm btn-primary"></a>
+                    </div></form>
+                <h4>{{ message }}</h4>
+                    <div class="bg-secondary rounded">
+                        <table class="table text-start">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Code Gestionnaire</th>
+                                    <th scope="col">Nom Société</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for g in ges %}
+                                <tr>
+                                    <td>{{ g.CodeGestionnaire }}</td>
+                                    <td>{{ g.NomSociete }}</td>
+                                    <td><a class="btn btn-sm btn-primary" href="/lovgest/modifier/{{ g.id }}">Modifier</a></td>
+                                    <td><a class="btn btn-sm btn-primary" href="/lovgest/supprimer/{{ g.id }}">Supprimer</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Gestion Lovgest End -->
+{% endblock %}

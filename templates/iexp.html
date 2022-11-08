@@ -1,0 +1,46 @@
+{% extends 'template.html' %}
+{% block content %}
+
+            <!-- Gestion Lovgest Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex row" style="text-align: left">
+                        <h6 class="mb-0 col-sm-7">Gestion des iexp</h6>
+                        <a href="/iexp/load" style="text-align: right">
+                        <input type="submit" value="Importer depuis le fichier excel" class="btn btn-sm btn-primary"></a>
+                    </div>
+                    <div class="bg-secondary rounded">
+                        <table class="table text-start">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Etape</th>
+                                    <th scope="col">Traitement</th>
+                                    <th scope="col">Durée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for g in iexp %}
+                                <tr>
+                                    <td>{{ g.etape }}</td>
+                                    <td>{{ g.traitement }}</td>
+                                    <td>{{ g.duree }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                <br>
+            <div class="row" style="text-align: center">
+                <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        {% for l in links %}
+                            <a href="/iexp/{{ l }}">
+                    <button class="doura btn-primary" style="border-radius: 17px;font-size: 17px;">&nbsp;{{ l }}&nbsp;</button>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Gestion Lovgest End -->
+{% endblock %}

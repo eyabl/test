@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+{% block content %}
+                <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
+                    <div class="col-md-6 text-center">
+{{ uploaded_file_url }}
+  <form method="post" enctype="multipart/form-data">
+        <h3>Veuillez choisir le fichier excel</h3>
+            {% csrf_token %}
+            <input type="file" name="myfile" class="form-control">
+                             <button type="submit" class="btn btn-success" >Upload</button>
+        </form>
+        <p></p>
+        {% for row in excel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}
+                    </div>
+                </div>
+    {% endblock %}
